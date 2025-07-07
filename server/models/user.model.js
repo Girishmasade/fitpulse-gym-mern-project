@@ -11,18 +11,18 @@ export const userSchema = new Schema(
       type: String,
       required: true,
       trim: true,
-      unique: true
+      unique: true,
     },
     role: {
-        type: String,
-        enum: ["owner", "trainer", "member"]
+      type: String,
+      enum: ["owner", "trainer", "member"],
     },
     password: {
-        type: String,
-    }
+      type: String,
+    },
   },
-  {timestamps: true}
+  { timestamps: true }
 );
 
-const User = mongoose.model("User", userSchema)
-export default User
+const User = mongoose.model("User", userSchema);
+export default User;
