@@ -17,6 +17,26 @@ export const userSchema = new Schema(
       type: String,
       enum: ["owner", "trainer", "member"],
     },
+    // verifyOtp: {
+    //   type: String,
+    //   default: "",
+    // },
+    // verifyOtpExpiry: {
+    //   type: Number,
+    //   default: 0,
+    // },
+    // isAccountVerified: {
+    //   type: Boolean,
+    //   default: false,
+    // },
+    // resetOtp: {
+    //   type: String,
+    //   default: "",
+    // },
+    // resetOtpExpireAt: {
+    //   type: Number,
+    //   default: 0,
+    // },
     password: {
       type: String,
     },
