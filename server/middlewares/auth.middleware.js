@@ -1,22 +1,30 @@
 import jwt from "jsonwebtoken";
+import User from "../models/user.model.js";
 
-export const protectedRoutes = (req, res, next) => {
-  try {
-    const token = req.headers.autharization?.split(" ")[1];
-    if (!token) {
-      return res.status(401).json({ message: "Unauthorized access" });
-    }
+export const protectedRoutes = async (req, res, next) => {
+try {
+  const authHeader = req.heaers.authorization;
 
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    req.user = decoded;
-    next();
-  } catch (error) {
-     console.error(error);
-    return res
-      .status(401)
-      .json({ status: false, message: "Not authorized. Try login again." });
-  
+  if (!authHeader || !authHeader.startsWith("Bearer")) {
+    console.log("Authorization header is missing or invalid");
+    return res.status(401).json({ message: "Unauthorized access" });
   }
+
+  const token = authHeader.split(" ")[1]
+
+  if (!token) {
+    console.log("Token is missing");
+  }
+
+  const decoded = jwt.verify(token, process.env.JWT_SECRET);
+
+  req.user = await User.findById(decoded.id).select("-password")
+
+  next()
+
+} catch (error) {
+  
+}
 };
 
 export const autharizeRoles = (...roles) => {
