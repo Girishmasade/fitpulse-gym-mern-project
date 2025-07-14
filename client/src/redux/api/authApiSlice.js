@@ -7,7 +7,7 @@ const initialState ={
     token: localStorage.getItem("token")
 }
 
-export const authReducer = createSlice({
+const authReducer = createSlice({
     name: 'auth',
     initialState,
     reducers: {
@@ -26,5 +26,5 @@ export const authReducer = createSlice({
     }
 })
 
-export const { setCredentials, logout } = authapiSlice.actions;
+export const { setCredentials, logout } = authReducer.actions;
 export default authReducer.reducer;

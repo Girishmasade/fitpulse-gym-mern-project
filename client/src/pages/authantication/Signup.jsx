@@ -3,13 +3,18 @@ import { ArrowLeft, Eye, User, Mail, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import signupBG from "/SignUpBG.jpg";
 import electricSvg from "/electric.svg";
+import { useSignupMutation } from "../../redux/app/authApp";
+import { useNavigate } from "react-router-dom";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [role, setRole] = useState("admin", "trainer", "member");
+  const [role, setRole] = useState("owner", "trainer", "member");
+  const navigate = useNavigate();
+
+const [signupMutation, { isLoading, error }] = useSignupMutation();
 
   const setOnChange = (e) => {
     const { name, value } = e.target;
@@ -26,7 +31,20 @@ const Signup = () => {
  
   const handleSubmit = (e) => {
     e.preventDefault();
+    const res = signupMutation({ username, email, password, role });
+    // console.log(res);
     
+    if(res.ok){
+      navigate("/login");
+    }
+
+    if(res.error) {
+      console.error("Signup failed:", res.error);
+    } else {
+      console.log("Signup successful:");
+      // Redirect or show success message
+    }
+
   };
 
   return (
@@ -117,7 +135,7 @@ const Signup = () => {
           name="role"
           className="w-full px-4 py-2.5 rounded-md bg-zinc-800 text-white border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400">
             <option value="">Select your role</option>
-            <option value="admin">Admin</option>
+            <option value="owner">Owner</option>
             <option value="trainer">Trainer</option>
             <option value="member">Member</option>
           </select>
@@ -128,7 +146,7 @@ const Signup = () => {
             type="submit"
             className="w-full hover:cursor-pointer bg-green-500 hover:bg-green-600 transition text-black font-semibold py-2.5 rounded-md shadow-md"
           >
-            Create Account
+           {isLoading ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
 

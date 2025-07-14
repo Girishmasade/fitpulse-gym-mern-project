@@ -11,9 +11,10 @@ dotenv.config({
 const app = express()
 app.use(express.json())
 app.use(cors({
-    path: "*",
-    allowedHeaders: true,
-    methods: ["PUT", "POST", "DELETE", "GET"]
+    origin: "http://localhost:5173",
+    allowedHeaders: ["content-type", "authorization"],
+    methods: ["PUT", "POST", "DELETE", "GET"],
+    credentials: true
 }))
 const PORT = process.env.PORT || 5000
 

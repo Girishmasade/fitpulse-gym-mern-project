@@ -3,29 +3,38 @@ import { ArrowLeft, Eye, User, Mail, Lock } from "lucide-react";
 import { Link } from "react-router-dom";
 import signupBG from "/SignUpBG.jpg";
 import electricSvg from "/electric.svg";
+import { useLoginMutation } from "../../redux/app/authApp";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const [useLoginMuation, { isLoading, isError }] = useLoginMutation();
+
   const setOnChange = (e) => {
     const { name, value } = e.target;
-   if (name === "email") {
+    if (name === "email") {
       setEmail(value);
     } else if (name === "password") {
       setPassword(value);
     }
   };
- 
+
   const handleSubmit = (e) => {
     e.preventDefault();
-    
+    const res = useLoginMuation({ email, password });
+    console.log(res.data);
+
+    if (res.error) {
+      console.error("Login failed:", res.error);
+    } else {
+      console.log("Login successful:", res.data);
+    }
   };
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center px-4 py-12 bg-black">
-
       <div
         className="absolute inset-0 bg-cover bg-center blur-sm opacity-40"
         style={{ backgroundImage: `url(${signupBG})` }}
@@ -33,9 +42,7 @@ const Login = () => {
 
       <div className="absolute inset-0 bg-black/60" />
 
-  
       <div className="relative z-10 w-full max-w-md bg-zinc-900 rounded-2xl p-8 shadow-xl border border-zinc-700 space-y-8 backdrop-blur-md bg-opacity-80">
-    
         {/* <div className="flex items-center gap-2  text-gray-300 text-sm">
           <ArrowLeft className="w-4 h-4" />
           <Link to="/" className="hover:underline">
@@ -51,7 +58,6 @@ const Login = () => {
           </Link>
         </div>
 
-      
         <div className="text-center text-white">
           <h1 className="text-2xl font-bold mb-1">Login Account</h1>
           <p className="text-gray-400 text-sm">
@@ -60,7 +66,6 @@ const Login = () => {
         </div>
 
         <form className="space-y-5">
-
           {/* Email */}
           <div className="relative">
             <Mail className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
@@ -91,7 +96,7 @@ const Login = () => {
               className="absolute right-3 top-3.5 w-5 h-5 text-gray-400 cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             />
-          </div>        
+          </div>
 
           {/* Submit Button */}
           <button
@@ -99,8 +104,13 @@ const Login = () => {
             type="submit"
             className="w-full hover:cursor-pointer bg-green-500 hover:bg-green-600 transition text-black font-semibold py-2.5 rounded-md shadow-md"
           >
-            Sign In
+            {isLoading ? "Logging in..." : "Login"}
           </button>
+          {isError && (
+            <p className="text-red-500 text-sm text-center">
+              Login failed. Please try again.
+            </p>
+          )}
         </form>
 
         {/* Footer Link */}
