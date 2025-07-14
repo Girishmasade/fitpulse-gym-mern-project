@@ -1,99 +1,73 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { ArrowLeft, Eye, User, Mail, Lock } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import signupBG from "/SignUpBG.jpg";
 import electricSvg from "/electric.svg";
 import { useSignupMutation } from "../../redux/app/authApp";
-import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
+import { useForm } from "react-hook-form";
 
 const Signup = () => {
   const [showPassword, setShowPassword] = useState(false);
-  const [username, setUsername] = useState("");
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [role, setRole] = useState("owner", "trainer", "member");
   const navigate = useNavigate();
+  const [signupMutation, { isLoading }] = useSignupMutation();
 
-const [signupMutation, { isLoading, error }] = useSignupMutation();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm();
 
-  const setOnChange = (e) => {
-    const { name, value } = e.target;
-    if (name === "username") {
-      setUsername(value);
-    } else if (name === "email") {
-      setEmail(value);
-    } else if (name === "password") {
-      setPassword(value);
-    } else if (name === "role") {
-      setRole(value);
+  const onSubmit = async (data) => {
+    try {
+      const res = await signupMutation(data).unwrap();
+      toast.success("Account created successfully!");
+      setTimeout(() => navigate("/login"), 1500);
+    } catch (err) {
+      toast.error(err?.data?.message || "Signup failed!");
     }
-  };
- 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const res = signupMutation({ username, email, password, role });
-    // console.log(res);
-    
-    if(res.ok){
-      navigate("/login");
-    }
-
-    if(res.error) {
-      console.error("Signup failed:", res.error);
-    } else {
-      console.log("Signup successful:");
-      // Redirect or show success message
-    }
-
   };
 
   return (
     <div className="relative w-full min-h-screen flex items-center justify-center px-4 py-12 bg-black">
-
       <div
         className="absolute inset-0 bg-cover bg-center blur-sm opacity-40"
         style={{ backgroundImage: `url(${signupBG})` }}
       />
-
       <div className="absolute inset-0 bg-black/60" />
 
-  
       <div className="relative z-10 w-full max-w-md bg-zinc-900 rounded-2xl p-8 shadow-xl border border-zinc-700 space-y-8 backdrop-blur-md bg-opacity-80">
-    
-        <div className="flex items-center gap-2  text-gray-300 text-sm">
+        <div className="flex items-center gap-2 text-gray-300 text-sm">
           <ArrowLeft className="w-4 h-4" />
-          <Link to="/" className="hover:underline">
+          <Link to="/dashboard" className="hover:underline">
             Back to Home
           </Link>
         </div>
 
-        <div className="flex items-center gap-2 justify-center text-center text-gray-300 text-2xl">
+        <div className="flex items-center gap-2 justify-center text-gray-300 text-2xl">
           <Link to="/" className="font-bold flex">
             <span>Fit</span>
-            <img src={electricSvg} alt="" className="w-9" />
+            <img src={electricSvg} alt="electric" className="w-9" />
             <span>Pluse</span>
           </Link>
         </div>
 
-      
         <div className="text-center text-white">
           <h1 className="text-2xl font-bold mb-1">Create Account</h1>
-          <p className="text-gray-400 text-sm">
-            Join our fitness community today
-          </p>
+          <p className="text-gray-400 text-sm">Join our fitness community today</p>
         </div>
 
-        <form className="space-y-5">
+        <form className="space-y-5" onSubmit={handleSubmit(onSubmit)}>
+          {/* Username */}
           <div className="relative">
             <User className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
             <input
               type="text"
               placeholder="Enter your full name"
               className="w-full pl-10 pr-4 py-2.5 rounded-md bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-              value={username}
-              onChange={setOnChange}
-              name="username"
+              {...register("username", { required: "Username is required" })}
             />
+            {errors.username && <p className="text-sm text-red-500">{errors.username.message}</p>}
           </div>
 
           {/* Email */}
@@ -103,10 +77,15 @@ const [signupMutation, { isLoading, error }] = useSignupMutation();
               type="email"
               placeholder="Enter your email"
               className="w-full pl-10 pr-4 py-2.5 rounded-md bg-zinc-700 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-              value={email}
-              onChange={setOnChange}
-              name="email"
+              {...register("email", {
+                required: "Email is required",
+                pattern: {
+                  value: /^\S+@\S+$/i,
+                  message: "Invalid email address",
+                },
+              })}
             />
+            {errors.email && <p className="text-sm text-red-500">{errors.email.message}</p>}
           </div>
 
           {/* Password */}
@@ -116,41 +95,43 @@ const [signupMutation, { isLoading, error }] = useSignupMutation();
               type={showPassword ? "text" : "password"}
               placeholder="Create a password (min 6 characters)"
               className="w-full pl-10 pr-10 py-2.5 rounded-md bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-green-400"
-              value={password}
-              onChange={setOnChange}
-              name="password"
-              minLength="6"
-              required
+              {...register("password", {
+                required: "Password is required",
+                minLength: {
+                  value: 6,
+                  message: "Password must be at least 6 characters",
+                },
+              })}
             />
             <Eye
               className="absolute right-3 top-3.5 w-5 h-5 text-gray-400 cursor-pointer"
               onClick={() => setShowPassword(!showPassword)}
             />
+            {errors.password && <p className="text-sm text-red-500">{errors.password.message}</p>}
           </div>
 
           {/* Role */}
           <select
-          value={role}
-          onChange={setOnChange}
-          name="role"
-          className="w-full px-4 py-2.5 rounded-md bg-zinc-800 text-white border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400">
+            {...register("role", { required: "Please select a role" })}
+            className="w-full px-4 py-2.5 rounded-md bg-zinc-800 text-white border border-green-500 focus:outline-none focus:ring-2 focus:ring-green-400"
+          >
             <option value="">Select your role</option>
             <option value="owner">Owner</option>
             <option value="trainer">Trainer</option>
             <option value="member">Member</option>
           </select>
+          {errors.role && <p className="text-sm text-red-500">{errors.role.message}</p>}
 
           {/* Submit Button */}
           <button
-            onClick={handleSubmit}
             type="submit"
-            className="w-full hover:cursor-pointer bg-green-500 hover:bg-green-600 transition text-black font-semibold py-2.5 rounded-md shadow-md"
+            className="w-full bg-green-500 hover:bg-green-600 transition text-black font-semibold py-2.5 rounded-md shadow-md"
           >
-           {isLoading ? "Signing Up..." : "Sign Up"}
+            {isLoading ? "Signing Up..." : "Sign Up"}
           </button>
         </form>
 
-        {/* Footer Link */}
+        {/* Footer */}
         <p className="text-center text-gray-400 text-sm">
           Already have an account?{" "}
           <Link to="/login" className="text-green-400 hover:underline">

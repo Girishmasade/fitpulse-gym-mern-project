@@ -1,15 +1,17 @@
 import React, { useEffect, useState } from "react";
-import { ArrowLeft, Eye, User, Mail, Lock } from "lucide-react";
-import { Link } from "react-router-dom";
+import { Eye, Mail, Lock, ArrowLeft } from "lucide-react";
+import { Link, useNavigate } from "react-router-dom";
 import signupBG from "/SignUpBG.jpg";
 import electricSvg from "/electric.svg";
 import { useLoginMutation } from "../../redux/app/authApp";
+import toast from "react-hot-toast";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
+  const navigate = useNavigate()
   const [useLoginMuation, { isLoading, isError }] = useLoginMutation();
 
   const setOnChange = (e) => {
@@ -30,6 +32,8 @@ const Login = () => {
       console.error("Login failed:", res.error);
     } else {
       console.log("Login successful:", res.data);
+      toast.success("Login successful!");
+      setTimeout(() => navigate('/dasboard'), 2000)
     }
   };
 
@@ -42,13 +46,13 @@ const Login = () => {
 
       <div className="absolute inset-0 bg-black/60" />
 
-      <div className="relative z-10 w-full max-w-md bg-zinc-900 rounded-2xl p-8 shadow-xl border border-zinc-700 space-y-8 backdrop-blur-md bg-opacity-80">
-        {/* <div className="flex items-center gap-2  text-gray-300 text-sm">
+     <div className="relative z-10 w-full max-w-md bg-zinc-900 rounded-2xl p-8 shadow-xl border border-zinc-700 space-y-8 backdrop-blur-md bg-opacity-80">
+        <div className="flex items-center gap-2 text-gray-300 text-sm">
           <ArrowLeft className="w-4 h-4" />
-          <Link to="/" className="hover:underline">
+          <Link to="/dashboard" className="hover:underline">
             Back to Home
           </Link>
-        </div> */}
+        </div>
 
         <div className="flex items-center gap-2 justify-center text-center text-gray-300 text-2xl">
           <Link to="/" className="font-bold flex">
@@ -84,7 +88,7 @@ const Login = () => {
             <Lock className="absolute left-3 top-3.5 w-5 h-5 text-gray-400" />
             <input
               type={showPassword ? "text" : "password"}
-              placeholder="Create a password (min 6 characters)"
+              placeholder="Enter Your Password"
               className="w-full pl-10 pr-10 py-2.5 rounded-md bg-zinc-800 text-white placeholder-gray-400 border border-zinc-600 focus:outline-none focus:ring-2 focus:ring-green-400"
               value={password}
               onChange={setOnChange}

@@ -1,1 +1,58 @@
 @import "tailwindcss";
+
+@keyframes blinkGlow {
+  0%, 100% {
+    box-shadow: 0 0 0px 0px #22c55e;
+  }
+  50% {
+    box-shadow: 0 0 30px 10px #22c55e;
+  }
+}
+
+.blink-glow {
+  animation: blinkGlow 1.5s ease-in-out infinite;
+}
+
+@keyframes blink {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+
+.blink {
+  animation: blink 1s linear infinite;
+}
+
+@keyframes blinkk {
+  0%, 100% {
+    box-shadow: 0 0 20px 0px #22c55e;
+    opacity: 1;
+  }
+  50% {
+    box-shadow: 0 0 30px 10px #22c55e;
+    opacity: 0.8;
+  }
+}
+
+.blinkk {
+  animation: blinkk 3s ease-in-out infinite;
+}
+
+
+
+/* ⬆ Optional: Custom Bounce (if not using Tailwind's built-in one) */
+@keyframes custom-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-20px);
+  }
+}
+
+.bounce {
+  animation: custom-bounce 1s ease-in-out infinite;
+}
