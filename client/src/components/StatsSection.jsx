@@ -32,7 +32,7 @@ const StatsSection = () => {
       <div className="absolute w-12 h-12 sm:w-16 sm:h-16 bg-green-900 rounded-full animate-pulse delay-1000 bottom-54 right-4 sm:right-10 z-0" />
 
       <div className="max-w-7xl mx-auto text-center relative z-10">
-        <h1 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-[#00FF80] to-[#00F0FF] text-transparent bg-clip-text mb-4">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-[#39FF14] to-[#00F0FF] text-transparent bg-clip-text mb-4">
           Trusted Globally
         </h1>
         <p className="text-base sm:text-lg mb-10 text-[#B0B0B0]">
@@ -50,7 +50,7 @@ const StatsSection = () => {
               </div>
               <h3
                 className={`text-2xl sm:text-3xl font-extrabold ${
-                  index % 2 === 0 ? "text-[#00FF80]" : "text-[#00F0FF]"
+                  index % 2 === 0 ? "text-[#39FF14]" : "text-[#00F0FF]"
                 }`}
               >
                 {stat.value}

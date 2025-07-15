@@ -2,7 +2,7 @@
 
 @keyframes blinkGlow {
   0%, 100% {
-    box-shadow: 0 0 0px 0px #22c55e;
+    box-shadow: 0 0 0px 0px #39FF14;
   }
   50% {
     box-shadow: 0 0 30px 10px #22c55e;
@@ -28,11 +28,11 @@
 
 @keyframes blinkk {
   0%, 100% {
-    box-shadow: 0 0 20px 0px #22c55e;
+    box-shadow: 0 0 20px 0px #39FF14;
     opacity: 1;
   }
   50% {
-    box-shadow: 0 0 30px 10px #22c55e;
+    box-shadow: 0 0 30px 10px #39FF14;
     opacity: 0.8;
   }
 }
@@ -55,4 +55,9 @@
 
 .bounce {
   animation: custom-bounce 1s ease-in-out infinite;
+}
+
+
+.bg-neon-green {
+    background-color: hsl(var(--neon-green));
 }

@@ -33,7 +33,7 @@ const Login = () => {
     } else {
       console.log("Login successful:", res.data);
       toast.success("Login successful!");
-      setTimeout(() => navigate('/dasboard'), 2000)
+      setTimeout(() => navigate('/dashboard'), 2000)
     }
   };
 

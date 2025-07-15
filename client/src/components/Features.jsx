@@ -51,7 +51,7 @@ const Features = () => {
   return (
     <div className="w-full min-h-screen flex flex-col bg-[#111818] p-8">
       <div className="flex flex-col gap-2 text-center items-center">
-        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-green-400 to-cyan-400 text-transparent bg-clip-text">
+        <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-[#39FF14] to-cyan-400 text-transparent bg-clip-text">
           Powerful Features
         </h1>
         <p className="max-w-xl sm:max-w-2xl text-gray-300 mt-4 text-sm sm:text-base md:text-xl">
@@ -66,7 +66,7 @@ const Features = () => {
             key={index}
             className="group rounded-xl flex flex-col items-center justify-center gap-5 bg-[#0d1414] p-6 text-center transition-all duration-300 hover:ring-1 hover:ring-[#00FF80] hover:shadow-[0_0_20px_3px_rgba(0,255,100,0.4)] hover:scale-105 cursor-pointer"
           >
-            <div className="w-20 h-20 rounded-full bg-gradient-to-t from-[#00FF80] to-cyan-400 flex items-center justify-center transition-transform duration-500 group-hover:rotate-12">
+            <div className="w-20 h-20 rounded-full bg-gradient-to-r from-[#39FF14] to-cyan-400 flex items-center justify-center transition-transform duration-500 group-hover:rotate-12">
               {feature.icon}
             </div>
 

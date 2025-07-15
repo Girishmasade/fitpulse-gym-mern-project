@@ -10,7 +10,7 @@ const Navbar = () => {
       <div className="flex items-center gap-2 text-white text-2xl font-bold">
         <Link to="/" className="flex items-center gap-1">
           <span>Fit</span>
-          <img src={electricSvg} alt="logo" className="w-8" />
+          <img src={electricSvg} alt="logo" className="w-8 bg-[#39FF14] text-transparent bg-clip-text" />
           <span>Pluse</span>
         </Link>
       </div>
@@ -19,7 +19,7 @@ const Navbar = () => {
       <div>
         <Link
           to="/signup"
-          className="bg-green-500 hover:bg-green-600 text-black font-semibold px-5 py-2 rounded-xl transition duration-300 shadow-md"
+          className="bg-[#39FF14] hover:bg-[#6bd658] text-black font-semibold px-5 py-2 rounded-xl transition duration-300 shadow-md"
         >
           Join Now
         </Link>

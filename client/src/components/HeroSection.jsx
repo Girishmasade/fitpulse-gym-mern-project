@@ -13,7 +13,7 @@ const HeroSection = () => {
         {/* Glowing Blobs */}
         <div className="w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-green-500 blink-glow absolute top-10 left-4 sm:top-20 sm:left-10" />
 
-        <div className="w-16 h-16 shadow-green-600 shadow-2xl rounded-2xl bg-black blinkk absolute top-16 left-1/2 -translate-x-1/2 flex items-center justify-center">
+        <div className="w-16 h-16 shadow-green-600 shadow-2xl rounded-2xl bg-black blinkk absolute top-20 left-1/2 -translate-x-1/2 flex items-center justify-center">
           <img
             src={electricSvg}
             alt="Electric"
@@ -28,7 +28,7 @@ const HeroSection = () => {
         {/* Center Content */}
         <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-full px-4">
           <div className="flex flex-col items-center text-center">
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-green-400 to-cyan-400 text-transparent bg-clip-text">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-extrabold bg-gradient-to-r from-[#39FF14] to-cyan-400 text-transparent bg-clip-text">
               Train Hard.
             </h1>
             <h4 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl text-white font-bold mt-2">
@@ -42,12 +42,12 @@ const HeroSection = () => {
 
             <div className="pt-8 sm:pt-10 flex flex-col sm:flex-row gap-4">
               <Link to="/signup">
-                <button className="w-full sm:w-[170px] bg-green-500 hover:bg-green-600 text-black font-semibold px-5 py-2 rounded-xl transition duration-300 shadow-md text-lg sm:text-xl flex items-center justify-center gap-2">
+                <button className="w-full sm:w-[170px] bg-[#39FF14] hover:bg-[#37ff14ce] ring-[#00FF80] shadow-[0_0_20px_3px_rgba(0,255,100,0.4)] scale-105 cursor-pointer text-black font-semibold px-5 py-2 rounded-xl transition duration-300 text-lg sm:text-xl flex items-center justify-center gap-2">
                   Join Now <ChevronRight />
                 </button>
               </Link>
               <Link to="/login">
-                <button className="w-full sm:w-[100px] border border-cyan-400 hover:bg-cyan-400 hover:text-black text-cyan-400 font-semibold px-5 py-2 rounded-xl transition duration-300 shadow-md text-lg sm:text-xl">
+                <button className="w-full cursor-pointer sm:w-[100px] border border-cyan-400 hover:bg-cyan-400 hover:text-black text-cyan-400 font-semibold px-5 py-2 rounded-xl transition duration-300 shadow-md text-lg sm:text-xl">
                   Login
                 </button>
               </Link>
