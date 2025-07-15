@@ -1,8 +1,12 @@
 import { Link } from "react-router-dom";
 import electricSvg from "/electric.svg";
-import { ChevronRight } from "lucide-react";
+import {
+  ChevronRight,
+} from "lucide-react";
 
 const HeroSection = () => {
+ 
+
   return (
     <div className="w-full min-h-screen flex items-center justify-center bg-black relative overflow-hidden px-4">
       <div className="relative w-full max-w-[1200px] min-h-screen flex items-center justify-center">
@@ -10,12 +14,16 @@ const HeroSection = () => {
         <div className="w-24 h-24 sm:w-36 sm:h-36 rounded-full bg-green-500 blink-glow absolute top-10 left-4 sm:top-20 sm:left-10" />
 
         <div className="w-16 h-16 shadow-green-600 shadow-2xl rounded-2xl bg-black blinkk absolute top-16 left-1/2 -translate-x-1/2 flex items-center justify-center">
-          <img src={electricSvg} alt="Electric" className="w-8 h-8 sm:w-10 sm:h-10" />
+          <img
+            src={electricSvg}
+            alt="Electric"
+            className="w-8 h-8 sm:w-10 sm:h-10"
+          />
         </div>
 
-        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-green-900 rounded-full blink absolute bottom-20 left-10 sm:left-20" />
+        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-green-900 rounded-full blink absolute bottom-40 left-10 sm:left-20" />
 
-        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-blue-500 rounded-full bounce absolute bottom-10 right-10 sm:right-20" />
+        <div className="w-14 h-14 sm:w-20 sm:h-20 bg-blue-500 rounded-full bounce absolute bottom-40 right-10 sm:right-20" />
 
         {/* Center Content */}
         <div className="z-10 absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex items-center justify-center w-full px-4">
@@ -27,8 +35,9 @@ const HeroSection = () => {
               Manage Smart.
             </h4>
             <p className="max-w-xl sm:max-w-2xl text-gray-300 mt-4 text-sm sm:text-base md:text-xl">
-              Transform your fitness journey with our comprehensive gym management system.
-              Track workouts, manage memberships, and achieve your goals.
+              Transform your fitness journey with our comprehensive gym
+              management system. Track workouts, manage memberships, and achieve
+              your goals.
             </p>
 
             <div className="pt-8 sm:pt-10 flex flex-col sm:flex-row gap-4">
@@ -46,6 +55,7 @@ const HeroSection = () => {
           </div>
         </div>
       </div>
+      
     </div>
   );
 };
