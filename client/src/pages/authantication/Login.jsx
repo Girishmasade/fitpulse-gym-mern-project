@@ -5,12 +5,14 @@ import signupBG from "/SignUpBG.jpg";
 import electricSvg from "/electric.svg";
 import { useLoginMutation } from "../../redux/app/authApp";
 import toast from "react-hot-toast";
+import { useDispatch } from "react-redux";
+import { setCredentials } from "../../redux/api/authApiSlice";
 
 const Login = () => {
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  const dispatch = useDispatch()
   const navigate = useNavigate()
   const [loginUser, { isLoading, isError }] = useLoginMutation();
 
@@ -28,21 +30,32 @@ const Login = () => {
     const res = await loginUser({ email, password }).unwrap();
     console.log(res);
 
+    dispatch(
+      setCredentials({
+        user: res.user,
+        token: res.token,
+        role: res.role,
+      })
+    )
+
     if (res.error) {
       console.error("Login failed:", res.error);
     } else {
       console.log("Login successful:", res.user);
       toast.success("Login successful!");
 
+      const role = res.user.role.toLowerCase(); 
       let redirectPath = "/dashboard";
-      if (res.user.role === "owner") {
+
+      if(role === "owner") {
         redirectPath = "/owner/dashboard";
-      } else if (res.role === "member") {
-        redirectPath = "/user/profile";
-      } else if (res.role === "trainer") {
+      } else if (role === "trainer") {
         redirectPath = "/trainer/dashboard";
+      } else if (role === "member") {
+        redirectPath = "/user/dashboard";
       }
-      setTimeout(() =>  navigate(redirectPath), 2000)
+
+      setTimeout(() =>  navigate(redirectPath), 1000)
     }
   };
 

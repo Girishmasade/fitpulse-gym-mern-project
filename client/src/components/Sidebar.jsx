@@ -1,12 +1,17 @@
 import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import electricSvg from "/electric.svg";
 
 const Sidebar = () => {
-  const role = (
-    useSelector((state) => state.auth.role) || localStorage.getItem("roles")
-  )?.toLowerCase();
+
+const userRole = useSelector((state) => state.auth?.user?.role);
+const role = userRole?.toLowerCase() || localStorage.getItem("roles")?.toLowerCase();
+
+  console.log("Sidebar role:", role);
+
+  const dispatch = useDispatch();
+  
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -22,7 +27,7 @@ const Sidebar = () => {
       { name: "Dashboard", path: "/user/dashboard" },
       { name: "Bookings", path: "/user/bookings" },
       { name: "Progress", path: "/user/progress" },
-       { name: "Chat", path: "/user/chat" },
+      { name: "Chat", path: "/user/chat" },
     ],
     trainer: [
       { name: "Dashboard", path: "/trainer/dashboard" },
@@ -48,6 +53,7 @@ const Sidebar = () => {
     "block px-4 py-2 rounded-md transition hover:bg-black/50 hover:text-white";
 
   const handleLogout = () => {
+    dispatch(logout());
     localStorage.clear();
     navigate("/login");
   };
@@ -56,13 +62,18 @@ const Sidebar = () => {
     <aside className="flex flex-col justify-between h-screen bg-[#121820] w-[240px] text-sm">
       {/* Top Section */}
       <div className="p-4">
-          <div className="flex items-center pl-4 pt-2 gap-2 text-white text-2xl font-bold">
-              <Link to="/" className="flex items-center gap-1">
-                <span>Fit</span>
-                <img src={electricSvg} alt="logo" className="w-8 bg-[#39FF14] text-transparent bg-clip-text" />
-                <span>Pluse</span>
-              </Link>
-            </div>
+        <div className="flex items-center pl-4 pt-2 gap-2 text-white text-2xl font-bold">
+          <Link to="/" className="flex items-center gap-1">
+            <span>Fit</span>
+            <img
+              src={electricSvg}
+              alt="logo"
+              className="w-8 bg-[#39FF14] text-transparent bg-clip-text"
+            />
+            <span>Pluse</span>
+          </Link>
+        </div>
+
         <nav className="space-y-2 pt-6">
           {links.map((link) => (
             <Link
@@ -81,7 +92,7 @@ const Sidebar = () => {
       </div>
 
       {/* Bottom Profile & Logout */}
-      <div className="p-4  space-y-2">
+      <div className="p-4 space-y-2">
         <Link
           to={profilePath}
           className={`${commonClass} ${
@@ -94,8 +105,7 @@ const Sidebar = () => {
         </Link>
         <button
           onClick={handleLogout}
-          className={`${commonClass} flex w-full items-end hover:text-black cursor-pointer`}
-      
+          className={`${commonClass} text-red-400 hover:bg-red-500/10 hover:text-red-300 w-full text-left`}
         >
           Logout
         </button>

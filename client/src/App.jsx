@@ -5,7 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import Dashboard from './pages/./commonPages/Dashboard';
 import MainLayout from './layout/MainLayout';
 import OwnerDashboard from './pages/owner/Dashboard';
-import ProtectedRoutes from './protected Routes/ProtectedRoutes';
+import OwnerProtectedRoute from './protected Routes/OwnerProtectedRoute';
 
 const App = () => {
   return (
@@ -18,8 +18,10 @@ const App = () => {
         <Route path='/signup' element={<Signup/>}/>
 
         {/* Add more routes as needed */}
-        <Route element={<MainLayout/>}>
-          <Route path='/owner/dashboard' element={<OwnerDashboard/>} />
+        <Route element={<OwnerProtectedRoute />}>
+          <Route element={<MainLayout />}>
+            <Route path="/owner/dashboard" element={<OwnerDashboard />} />
+          </Route>
         </Route>
 
       </Routes>
