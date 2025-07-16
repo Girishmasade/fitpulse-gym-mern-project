@@ -139,7 +139,7 @@ const Pricing = () => {
           <div
             key={idx}
             className={`relative w-full sm:w-[300px] lg:w-[340px] bg-[#11161c] rounded-xl p-6 border border-[#1e2838] hover:scale-105 transition duration-300 ${
-              plan.highlight ? "ring-2 ring-[#39FF14] " : ""
+              plan.highlight ? "ring-2 ring-[#39FF14] shadow-[0_0_20px_3px_rgba(0,255,100,0.4)]" : ""
             }`}
           >
             {plan.highlight && (

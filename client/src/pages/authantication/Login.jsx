@@ -12,7 +12,7 @@ const Login = () => {
   const [password, setPassword] = useState("");
 
   const navigate = useNavigate()
-  const [useLoginMuation, { isLoading, isError }] = useLoginMutation();
+  const [loginUser, { isLoading, isError }] = useLoginMutation();
 
   const setOnChange = (e) => {
     const { name, value } = e.target;
@@ -23,17 +23,26 @@ const Login = () => {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = useLoginMuation({ email, password });
-    console.log(res.data);
+    const res = await loginUser({ email, password }).unwrap();
+    console.log(res);
 
     if (res.error) {
       console.error("Login failed:", res.error);
     } else {
-      console.log("Login successful:", res.data);
+      console.log("Login successful:", res.user);
       toast.success("Login successful!");
-      setTimeout(() => navigate('/dashboard'), 2000)
+
+      let redirectPath = "/dashboard";
+      if (res.user.role === "owner") {
+        redirectPath = "/owner/dashboard";
+      } else if (res.role === "member") {
+        redirectPath = "/user/profile";
+      } else if (res.role === "trainer") {
+        redirectPath = "/trainer/dashboard";
+      }
+      setTimeout(() =>  navigate(redirectPath), 2000)
     }
   };
 
