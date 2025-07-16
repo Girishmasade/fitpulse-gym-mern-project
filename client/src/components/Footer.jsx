@@ -7,7 +7,8 @@ import {
   BadgeCheck,
   ShieldCheck,
 } from "lucide-react";
-
+import { Link } from "react-router-dom";
+import electricSvg from "/electric.svg";
 const Footer = () => {
   return (
     <footer className="bg-[#0c0f14] text-gray-300 px-6 py-10 md:px-16 lg:px-24 border-t border-gray-800">
@@ -15,8 +16,14 @@ const Footer = () => {
 
         {/* Logo & About */}
         <div>
-          <h2 className="text-green-500 font-bold text-2xl mb-3">GymFlow</h2>
-          <p className="text-sm">
+            <div className="flex items-center gap-2 text-white text-2xl font-bold">
+                 <Link to="/" className="flex items-center gap-1">
+                   <span>Fit</span>
+                   <img src={electricSvg} alt="logo" className="w-8 bg-[#39FF14] text-transparent bg-clip-text" />
+                   <span>Pluse</span>
+                 </Link>
+               </div>
+          <p className="text-sm pt-3">
             Revolutionizing fitness management with cutting-edge technology and AI-powered insights. Transform your gym into a thriving fitness empire.
           </p>
           <div className="flex gap-4 mt-4 text-lg text-white/50">
@@ -98,14 +105,14 @@ const Footer = () => {
       {/* Bottom Bar */}
       <div className="text-sm text-gray-500 flex flex-col md:flex-row justify-between gap-4">
         <div>
-          <p>© 2024 GymFlow Technologies Inc. All rights reserved.</p>
+          <p>© 2024 fitpluse Technologies Inc. All rights reserved.</p>
           <p>
             Licensed under MIT License. See{" "}
             <span className="text-green-500 cursor-pointer">LICENSE</span> for details.
           </p>
         </div>
         <div className="mt-2 md:mt-0">
-          Made with <span className="text-red-500">❤️</span> by the GymFlow team in San Francisco
+          Made with <span className="text-red-500">❤️</span> by the Girish Masade in India
         </div>
       </div>
     </footer>

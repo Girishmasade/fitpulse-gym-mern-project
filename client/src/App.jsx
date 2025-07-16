@@ -2,7 +2,7 @@ import {BrowserRouter as Router, Routes, Route, Navigate} from 'react-router-dom
 import Login from './pages/authantication/Login'
 import Signup from './pages/authantication/Signup'
 import { Toaster } from 'react-hot-toast';
-import Dashboard from './pages/Dashboard';
+import Dashboard from './pages/./commonPages/Dashboard';
 
 const App = () => {
   return (
