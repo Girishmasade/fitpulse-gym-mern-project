@@ -6,6 +6,11 @@ import Dashboard from './pages/./commonPages/Dashboard';
 import MainLayout from './layout/MainLayout';
 import OwnerDashboard from './pages/owner/Dashboard';
 import OwnerProtectedRoute from './protected Routes/OwnerProtectedRoute';
+import Users from './pages/owner/Users';
+import Plans from './pages/owner/Plans';
+import Reports from './pages/owner/Reports';
+import Setting from './pages/owner/Setting';
+import Profile from './pages/owner/Profile';
 
 const App = () => {
   return (
@@ -21,6 +26,11 @@ const App = () => {
         <Route element={<OwnerProtectedRoute />}>
           <Route element={<MainLayout />}>
             <Route path="/owner/dashboard" element={<OwnerDashboard />} />
+            <Route path="/owner/users" element={<Users />} />
+             <Route path="/owner/plans" element={<Plans />} />
+            <Route path="/owner/reports" element={<Reports />} /> 
+            <Route path="/owner/settings" element={<Setting />} />
+            <Route path="/owner/profile" element={<Profile />} />
           </Route>
         </Route>
 

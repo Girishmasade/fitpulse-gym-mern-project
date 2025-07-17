@@ -30,8 +30,8 @@ const Sidebar = () => {
     owner: [
       { name: "Dashboard", path: "/owner/dashboard", icon: <House className="w-5 h-5"/> },
       { name: "Users", path: "/owner/users", icon: <Users className="w-5 h-5"/> },
-      { name: "Plans", path: "/owner/settings", icon: <CreditCard className="w-5 h-5"/> },
-      { name: "Reports", path: "/owner/settings", icon: <ChartColumn className="w-5 h-5"/> },
+      { name: "Plans", path: "/owner/plans", icon: <CreditCard className="w-5 h-5"/> },
+      { name: "Reports", path: "/owner/reports", icon: <ChartColumn className="w-5 h-5"/> },
       { name: "Settings", path: "/owner/settings", icon: <Settings className="w-5 h-5"/> },
     ],
     member: [
