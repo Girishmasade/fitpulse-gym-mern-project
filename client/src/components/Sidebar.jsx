@@ -70,7 +70,7 @@ const Sidebar = () => {
   };
 
   return (
-    <aside className="flex flex-col justify-between h-screen bg-[#121820] w-[240px] text-sm">
+    <aside className="flex flex-col justify-between min-h-screen bg-[#121820] w-[240px] text-sm">
       {/* Top Section */}
       <div className="p-4">
         <div className="flex items-center pl-4 pt-2 gap-2 text-white text-2xl font-bold">
