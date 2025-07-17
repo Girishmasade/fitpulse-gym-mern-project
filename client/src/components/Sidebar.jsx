@@ -2,16 +2,25 @@ import React from "react";
 import { Link, useLocation, useNavigate } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import electricSvg from "/electric.svg";
+import {
+  House,
+  Users,
+  CreditCard,
+  ChartColumn,
+  Settings,
+  User,
+  LogOut,
+} from "lucide-react";
 
 const Sidebar = () => {
-
-const userRole = useSelector((state) => state.auth?.user?.role);
-const role = userRole?.toLowerCase() || localStorage.getItem("roles")?.toLowerCase();
+  const userRole = useSelector((state) => state.auth?.user?.role);
+  const role =
+    userRole?.toLowerCase() || localStorage.getItem("roles")?.toLowerCase();
 
   console.log("Sidebar role:", role);
 
   const dispatch = useDispatch();
-  
+
   const { pathname } = useLocation();
   const navigate = useNavigate();
 
@@ -19,9 +28,11 @@ const role = userRole?.toLowerCase() || localStorage.getItem("roles")?.toLowerCa
 
   const roleLinks = {
     owner: [
-      { name: "Dashboard", path: "/owner/dashboard" },
-      { name: "Users", path: "/owner/users" },
-      { name: "Settings", path: "/owner/settings" },
+      { name: "Dashboard", path: "/owner/dashboard", icon: <House className="w-5 h-5"/> },
+      { name: "Users", path: "/owner/users", icon: <Users className="w-5 h-5"/> },
+      { name: "Plans", path: "/owner/settings", icon: <CreditCard className="w-5 h-5"/> },
+      { name: "Reports", path: "/owner/settings", icon: <ChartColumn className="w-5 h-5"/> },
+      { name: "Settings", path: "/owner/settings", icon: <Settings className="w-5 h-5"/> },
     ],
     member: [
       { name: "Dashboard", path: "/user/dashboard" },
@@ -79,12 +90,13 @@ const role = userRole?.toLowerCase() || localStorage.getItem("roles")?.toLowerCa
             <Link
               key={link.path}
               to={link.path}
-              className={`${commonClass} ${
+              className={`${commonClass} flex gap-2 ${
                 isActive(link.path)
                   ? "bg-[#39FF14] text-black shadow-[0_0_20px_3px_rgba(0,255,100,0.4)]"
                   : "text-gray-300"
               }`}
             >
+              {link.icon}
               {link.name}
             </Link>
           ))}
@@ -95,18 +107,20 @@ const role = userRole?.toLowerCase() || localStorage.getItem("roles")?.toLowerCa
       <div className="p-4 space-y-2">
         <Link
           to={profilePath}
-          className={`${commonClass} ${
+          className={`${commonClass} flex gap-2 items-center ${
             isActive(profilePath)
               ? "bg-[#39FF14] text-black shadow-[0_0_20px_3px_rgba(0,255,100,0.4)]"
               : "text-gray-300"
           }`}
         >
+          <User className="w-5 h-5" />
           Profile
         </Link>
         <button
           onClick={handleLogout}
-          className={`${commonClass} text-red-400 hover:bg-red-500/10 hover:text-red-300 w-full text-left`}
+          className={`${commonClass} flex gap-2 text-red-400 hover:bg-red-500/10 hover:text-red-300 w-full text-left cursor-pointer`}
         >
+          <LogOut className="w-5 h-5" />
           Logout
         </button>
       </div>

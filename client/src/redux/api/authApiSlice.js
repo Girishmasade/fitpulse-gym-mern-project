@@ -5,7 +5,7 @@ const initialState = {
     ? JSON.parse(localStorage.getItem("user")) 
     : null,
   token: localStorage.getItem("token") || null,
-  role: localStorage.getItem("roles") || null, // ✅ read from storage
+  role: localStorage.getItem("roles") || null,
 };
 
 const authReducer = createSlice({
@@ -20,7 +20,7 @@ const authReducer = createSlice({
 
       localStorage.setItem("user", JSON.stringify(user));
       localStorage.setItem("token", token);
-      localStorage.setItem("roles", role); //
+      localStorage.setItem("roles", role); 
     },
     logout: (state) => {
       state.user = null;
