@@ -11,6 +11,7 @@ import {
   User,
   LogOut,
 } from "lucide-react";
+import {logout} from '../redux/api/authApiSlice'
 
 const Sidebar = () => {
   const userRole = useSelector((state) => state.auth?.user?.role);
