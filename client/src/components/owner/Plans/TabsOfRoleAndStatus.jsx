@@ -29,7 +29,7 @@ const TabsOfRoleAndStatus = () => {
 
       <Card />
 
-      <div className="rounded-md p-4 bg-[#0F172A] text-white w-full overflow-x-auto">
+      <div className="rounded-md p-4 text-white w-full overflow-x-auto">
         {activeTabs === "Overview" && <Owerview />}
         {activeTabs === "Member" && <Members />}
         {activeTabs === "Plans" && <Plans />}
