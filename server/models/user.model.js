@@ -17,9 +17,9 @@ export const userSchema = new Schema(
       type: String,
       enum: ["owner", "trainer", "member"],
     },
-    status:{
+    status: {
       type: String,
-      enm: ["active", "inactive"]
+      enm: ["active", "inactive", "Pending Renewal"],
     },
     verifyOtp: {
       type: String,
@@ -43,6 +43,21 @@ export const userSchema = new Schema(
     },
     password: {
       type: String,
+    },
+    subscriptionPlan: {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Subscription",
+    },
+    renewalDue: {
+      type: Boolean,
+      default: false,
+    },
+    renewed: {
+      type: Boolean,
+      default: false,
+    },
+    renewalUpdatedAt: {
+      type: Date,
     },
   },
   { timestamps: true }
