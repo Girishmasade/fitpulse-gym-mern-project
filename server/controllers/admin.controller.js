@@ -1,3 +1,4 @@
+import Subscription from "../models/subscription.model.js";
 import User from "../models/user.model.js";
 
 export const trainerList = async (req, res) => {
@@ -23,11 +24,11 @@ export const trainerList = async (req, res) => {
 };
 
 export const memberList = async (req, res) => {
-    try {
-        const userRole = await User.find({role: "member"})
-        console.log(userRole);
+  try {
+    const userRole = await User.find({ role: "member" });
+    console.log(userRole);
 
-         if (!userRole || userRole.length === 0) {
+    if (!userRole || userRole.length === 0) {
       return res.status(404).json({
         success: false,
         message: "No trainers found",
@@ -39,8 +40,39 @@ export const memberList = async (req, res) => {
       message: "Trainer list fetched successfully",
       users: userRole,
     });
-         
-    } catch (error) {
-        return res.status(500).json({ success: false, message: error.message });
+  } catch (error) {
+    return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
+export const createSubscriptionPlan = async (req, res) => {
+  try {
+    const { plans, monthlyPrice, yearlyPrice, features, activeMembers } = req.body;
+
+    if (!plans || !monthlyPrice || !yearlyPrice || !features) {
+      return res.status(400).json({success: false, message: "all fields required"})
     }
-}
+
+    const createNewPlan = await Subscription.create({
+      plans,
+      monthlyPrice,
+      yearlyPrice,
+      features,
+      activeMembers: activeMembers || 0
+    })
+
+    console.log(createNewPlan);
+    
+
+     return res.status(201).json({
+      success: true,
+      message: "Subscription plan created successfully",
+      plan: createNewPlan
+    });
+
+  } catch (error) {
+       console.error("Error creating subscription plan:", error)
+ return res.status(500).json({ success: false, message: error.message });
+  }
+};
+
