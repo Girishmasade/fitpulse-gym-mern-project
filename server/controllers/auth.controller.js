@@ -24,6 +24,7 @@ export const registerUser = async (req, res) => {
       email,
       role,
       password: hashedPassword,
+      status: "active",
     });
 
     transporter
@@ -127,12 +128,11 @@ export const sendOtp = async (req, res) => {
     const OTP = Math.floor(100000 + Math.random() * 9000000);
 
     console.log(OTP);
-    
+
     user.verifyOtp = OTP;
     user.verifyOtpExpiry = new Date(Date.now() + 15 * 60 * 1000);
 
-    console.log(user.verifyOtp,  user.verifyOtpExpiry);
-    
+    console.log(user.verifyOtp, user.verifyOtpExpiry);
 
     await user.save();
 
@@ -161,3 +161,95 @@ export const sendOtp = async (req, res) => {
     });
   }
 };
+
+export const verifyOtp = async (req, res) => {
+  try {
+    const { userId, otp } = req.body;
+
+    if (!userId || !otp) {
+      return res.json({
+        success: false,
+        message: "User ID and OTP are required.",
+      });
+    }
+
+    const user = await User.findById({ userId });
+
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "User is not valid",
+      });
+    }
+
+    if (!user.verifyOtp === "" && user.verifyOtp !== otp) {
+      return res.json({
+        success: false,
+        message: "Invalid OTP.",
+      });
+    }
+
+    if (user.verifyOtpExpiry < Date.now) {
+      return res.json({
+        success: false,
+        message: "OTP is expired",
+      });
+    }
+
+    user.isAccountVerified = "true";
+    user.verifyOtp = "";
+    user.verifyOtpExpiry = 0;
+
+    await user.save();
+
+    return res.json({
+      success: true,
+      message: "User verified successfully",
+      isActive: true,
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+
+export const resendOtp = async (req, res) => {
+  try {
+    const { email } = req.body;
+
+    const user = await User.findOne({ email });
+
+    if (!user) {
+      return res.json({
+        success: false,
+        message: "Email is not registered",
+      });
+    }
+
+    const OTP = Math.floor(100000 + Math.random() * 900000);
+
+    user.resetOtp = OTP;
+    user.resetOtpExpireAt = new Date(Date.now() + +15 * 60 * 1000);
+
+    const mailOption = {
+      from: process.env.SMTP_USER,
+      to: user.email,
+      text: "Password Reset OTP",
+    };
+
+    await transporter.sendMail(mailOption);
+
+    return res.json({
+      success: true,
+      message: "Password reset otp send",
+    });
+  } catch (error) {
+    res.json({
+      success: false,
+      message: error.message,
+    });
+  }
+};
+

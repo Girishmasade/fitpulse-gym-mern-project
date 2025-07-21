@@ -17,6 +17,10 @@ export const userSchema = new Schema(
       type: String,
       enum: ["owner", "trainer", "member"],
     },
+    status:{
+      type: String,
+      enm: ["active", "inactive"]
+    },
     verifyOtp: {
       type: String,
       default: "",
