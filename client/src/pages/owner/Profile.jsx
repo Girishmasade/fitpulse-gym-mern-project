@@ -1,11 +1,18 @@
-import React from 'react'
+import React from "react";
+import ProfileData from "../../components/owner/profile/ProfileData";
+import UserManagementHeader from "../../components/owner/users/UserManagementHeader";
 
 const Profile = () => {
   return (
     <div>
-      
-    </div>
-  )
-}
+      <UserManagementHeader
+        title={"Admin Profile"}
+        subtitle={"Manage your administrator account and view system activity"}
+      />
 
-export default Profile
+      <ProfileData />
+    </div>
+  );
+};
+
+export default Profile;
