@@ -3,8 +3,8 @@ import React from "react";
 
 const SettingForm = () => {
   return (
-    <div className="flex justify-between gap-4 p-2">
-      <div className="w-[60%] border border-gray-500 p-3 rounded-md">
+    <div className="flex flex-col lg:flex-row justify-between gap-4 p-2">
+      <div className="lg:w-[60%] border border-gray-500 p-3 rounded-md">
         <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2 p-4">
           <div className="flex items-center gap-3">
             <Globe className="text-[#39FF14] w-6 h-6" />

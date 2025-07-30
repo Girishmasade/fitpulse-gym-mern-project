@@ -72,9 +72,8 @@ const Sidebar = () => {
 
   return (
     <aside className="flex flex-col justify-between min-h-screen bg-[#121820] w-[240px] text-sm">
-      {/* Top Section */}
-      <div className="p-4">
-        <div className="flex items-center pl-4 pt-2 gap-2 text-white text-2xl font-bold">
+      <div className="lg:p-4 p-1">
+        <div className="flex items-center pl-4 lg:pt-2 gap-2 text-white text-2xl font-bold">
           <Link to="/" className="flex items-center gap-1">
             <span>Fit</span>
             <img
@@ -86,7 +85,7 @@ const Sidebar = () => {
           </Link>
         </div>
 
-        <nav className="space-y-2 pt-6">
+        <nav className="space-y-2 lg:pt-6 pt-2">
           {links.map((link) => (
             <Link
               key={link.path}
@@ -104,8 +103,7 @@ const Sidebar = () => {
         </nav>
       </div>
 
-      {/* Bottom Profile & Logout */}
-      <div className="p-4 space-y-2">
+      <div className="p-4 space-y-2 lg:pb-0 pb-20">
         <Link
           to={profilePath}
           className={`${commonClass} flex gap-2 items-center ${

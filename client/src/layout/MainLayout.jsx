@@ -14,7 +14,7 @@ const MainLayout = () => {
   }
 
   return (
-    <div className="h-screen flex bg-[#0c0f14] text-white overflow-hidden">
+    <div className="min-h-screen flex bg-[#0c0f14] text-white overflow-hidden">
       
       <div
         className={`fixed md:static top-0 left-0 h-screen w-[240px] bg-[#121820] border-r border-[#1e2838] z-50 transform transition-transform duration-300 ${

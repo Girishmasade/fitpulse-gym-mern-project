@@ -140,7 +140,7 @@ const ProfileData = () => {
           </h1>
 
           <div className="flex items-center justify-center p-2 text-md border border-[#39FF14] cursor-pointer rounded-lg hover:bg-[#39FF14] text-[#39FF14] hover:text-black gap-5">
-            <Link to="/owner/setting">System Settings</Link>
+            <Link to="/owner/settings">System Settings</Link>
           </div>
           <div className="flex items-center justify-center p-2 text-md border border-[#14dcff] cursor-pointer rounded-lg hover:bg-[#14dcff] text-[#14dcff] hover:text-black gap-5">
             <Link to="/owner/users">Manage Users</Link>
