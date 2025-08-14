@@ -23,7 +23,7 @@ const OwnerProtectedRoute = () => {
     useSelector((state) => state.auth.role) || localStorage.getItem("roles");
 
   if (role === "owner") {
-    console.warn("");
+    console.warn("nauthorized access: Member role required");
     return <Navigate to="/login" replace />;
   }
 

@@ -11,6 +11,8 @@ import Plans from './pages/owner/Plans';
 import Reports from './pages/owner/Reports';
 import Setting from './pages/owner/Setting';
 import Profile from './pages/owner/Profile';
+import UserProtectedRoute from './protected Routes/UserProtectedRoute';
+import MemberDashboard from './pages/member/Dashboard'
 
 const App = () => {
   return (
@@ -32,6 +34,12 @@ const App = () => {
             <Route path="/owner/settings" element={<Setting />} />
             <Route path="/owner/profile" element={<Profile />} />
           </Route>
+        </Route>
+
+        <Route element={<UserProtectedRoute/>}>
+        <Route element={<MainLayout/>}>
+        <Route path='/user/dashboard' element={<MemberDashboard/>}/>
+        </Route>
         </Route>
 
       </Routes>
