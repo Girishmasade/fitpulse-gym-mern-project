@@ -72,6 +72,17 @@
   color: transparent;
 }
 
+.commonColorBg{
+  background-color:#39ff14
+}
+
+.commonColorBg:hover{
+  background-color:#1fd100
+}
+
+.colour{
+  color: #39ff14;
+}
 
 input:disabled{
   cursor: not-allowed; 

@@ -13,6 +13,9 @@ import Setting from './pages/owner/Setting';
 import Profile from './pages/owner/Profile';
 import UserProtectedRoute from './protected Routes/UserProtectedRoute';
 import MemberDashboard from './pages/member/Dashboard'
+import Bookings from './pages/member/Bookings';
+import Progress from './pages/member/Progress';
+import Chat from './pages/member/Chat';
 
 const App = () => {
   return (
@@ -39,6 +42,9 @@ const App = () => {
         <Route element={<UserProtectedRoute/>}>
         <Route element={<MainLayout/>}>
         <Route path='/user/dashboard' element={<MemberDashboard/>}/>
+        <Route path='/user/bookings' element={<Bookings/>}/>
+        <Route path='/user/progress' element={<Progress/>}/>
+        <Route path='/user/chat' element={<Chat/>}/>
         </Route>
         </Route>
 
