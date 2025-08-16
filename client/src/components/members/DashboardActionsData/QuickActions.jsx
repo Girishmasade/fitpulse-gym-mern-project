@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 
 const QuickActions = () => {
   return (
-    <div className='flex flex-col p-3 gap-4 w-full bg-base-200 rounded-md'>
+    <div className='flex flex-col p-4 gap-4 w-full bg-base-200 rounded-md h-[250px]'>
       <div className="flex flex-col">
-        <h1>Quick Actions</h1>
+        <h1 className='text-2xl font-semibold'>Quick Actions</h1>
         <p>Jump into your fitness routine</p>
       </div>
 
