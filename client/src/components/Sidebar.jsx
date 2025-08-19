@@ -11,7 +11,7 @@ import {
   User,
   LogOut,
 } from "lucide-react";
-import {logout} from '../redux/api/authApiSlice'
+import { logout } from "../redux/api/authApiSlice";
 
 const Sidebar = () => {
   const userRole = useSelector((state) => state.auth?.user?.role);
@@ -29,17 +29,38 @@ const Sidebar = () => {
 
   const roleLinks = {
     owner: [
-      { name: "Dashboard", path: "/owner/dashboard", icon: <House className="w-5 h-5"/> },
-      { name: "Users", path: "/owner/users", icon: <Users className="w-5 h-5"/> },
-      { name: "Plans", path: "/owner/plans", icon: <CreditCard className="w-5 h-5"/> },
-      { name: "Reports", path: "/owner/reports", icon: <ChartColumn className="w-5 h-5"/> },
-      { name: "Settings", path: "/owner/settings", icon: <Settings className="w-5 h-5"/> },
+      {
+        name: "Dashboard",
+        path: "/owner/dashboard",
+        icon: <House className="w-5 h-5" />,
+      },
+      {
+        name: "Users",
+        path: "/owner/members",
+        icon: <Users className="w-5 h-5" />,
+      },
+      {
+        name: "Plans",
+        path: "/owner/plans",
+        icon: <CreditCard className="w-5 h-5" />,
+      },
+      {
+        name: "Reports",
+        path: "/owner/reports",
+        icon: <ChartColumn className="w-5 h-5" />,
+      },
+      {
+        name: "Settings",
+        path: "/owner/settings",
+        icon: <Settings className="w-5 h-5" />,
+      },
     ],
     member: [
-      { name: "Dashboard", path: "/user/dashboard" },
-      { name: "Bookings", path: "/user/bookings" },
-      { name: "Progress", path: "/user/progress" },
-      { name: "Chat", path: "/user/chat" },
+      { name: "Dashboard", path: "/member/dashboard" },
+      { name: "Bookings", path: "/member/bookings" },
+      { name: "Progress", path: "/member/progress" },
+      { name: "Chat", path: "/member/chat" },
+      { name: "Subscription", path: "/member/subscription" },
     ],
     trainer: [
       { name: "Dashboard", path: "/trainer/dashboard" },
@@ -50,7 +71,7 @@ const Sidebar = () => {
 
   const profilePaths = {
     owner: "/owner/profile",
-    member: "/user/profile",
+    member: "/member/profile",
     trainer: "/trainer/profile",
   };
 

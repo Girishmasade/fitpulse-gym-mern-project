@@ -52,7 +52,7 @@ const Login = () => {
       } else if (role === "trainer") {
         redirectPath = "/trainer/dashboard";
       } else if (role === "member") {
-        redirectPath = "/user/dashboard";
+        redirectPath = "/member/dashboard";
       }
 
       setTimeout(() =>  navigate(redirectPath), 1000)

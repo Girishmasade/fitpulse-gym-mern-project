@@ -80,6 +80,12 @@
   background-color:#1fd100
 }
 
+.commonColourBgHover:hover{
+  background-color: cyan;
+  color: black;
+  transition-duration: 0.5s;
+}
+
 .colour{
   color: #39ff14;
 }

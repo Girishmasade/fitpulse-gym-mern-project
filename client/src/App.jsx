@@ -16,6 +16,9 @@ import MemberDashboard from './pages/member/Dashboard'
 import Bookings from './pages/member/Bookings';
 import Progress from './pages/member/Progress';
 import Chat from './pages/member/Chat';
+import Subscription from './pages/member/Subscription';
+import SubscrptionHistory from './components/members/DashboardActionsData/Subscription/SubscrptionHistory';
+import NutritionTodayCard from './components/members/DashboardActionsData/Nutrition Today/NutritionTodayCard';
 
 const App = () => {
   return (
@@ -41,10 +44,13 @@ const App = () => {
 
         <Route element={<UserProtectedRoute/>}>
         <Route element={<MainLayout/>}>
-        <Route path='/user/dashboard' element={<MemberDashboard/>}/>
-        <Route path='/user/bookings' element={<Bookings/>}/>
-        <Route path='/user/progress' element={<Progress/>}/>
-        <Route path='/user/chat' element={<Chat/>}/>
+        <Route path='/member/dashboard' element={<MemberDashboard/>}/>
+        <Route path='/member/bookings' element={<Bookings/>}/>
+        <Route path='/member/progress' element={<Progress/>}/>
+        <Route path='/member/chat' element={<Chat/>}/>
+         <Route path='/member/subscription' element={<Subscription/>}/>
+          <Route path='/member/subscription/history' element={<SubscrptionHistory/>}/>
+           <Route path='/member/nutrition' element={<NutritionTodayCard/>}/>
         </Route>
         </Route>
 
