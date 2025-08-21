@@ -1,20 +1,21 @@
-import React from "react";
-import { ArrowLeft, BookOpen, Clock4 } from "lucide-react";
+import React, { useState } from "react";
+import { ArrowLeft, BookOpen, Clock4, Target } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
+import NutritionCardForm from "./NutritionCardForm";
 
-
-const NutritionTodayCard = () => {
+const NutritionTodayCard = (meals) => {
   let todayDate = new Date();
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const backButtonHandler = () => {
-    navigate(-1)
-  }
+    navigate(-1);
+  };
+
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-black bg-opacity-50 lg:pt-9 pt-6 lg:px-20 px-2 min-h-screen">
-      <div
-        className="flex justify-between"
-      >
+      {/* Header */}
+      <div className="flex justify-between">
         <div className="flex gap-2 items-center">
           <button
             onClick={backButtonHandler}
@@ -44,6 +45,27 @@ const NutritionTodayCard = () => {
             {todayDate.toLocaleDateString("en-GB")}
           </h1>
         </div>
+      </div>
+
+      {/* Content */}
+      <div className="flex gap-7 pt-10">
+        {/* Left Card */}
+        <motion.div
+          initial={{ x: -300 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="border border-cyan-500 w-[400px] h-[500px] p-4 rounded-xl bg-gray-900 text-white flex flex-col gap-6"
+        >
+          <div className="flex flex-col">
+            <h1 className="flex gap-2 text-lg font-bold">
+              <Target className="colour" />
+              Today's Summary
+            </h1>
+            <span className="text-gray-400">Your nutrition progress</span>
+          </div>
+        </motion.div>
+
+        <div className=""></div>
       </div>
     </div>
   );

@@ -8,7 +8,9 @@ const NutritionToday = () => {
   const navigate = useNavigate()
   return (
     <motion.div
-     
+       initial={{ x: -300 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5 }}
       className="flex flex-col p-4 px-6 gap-5 bg-base-200 rounded-md h-[470px]"
     >
       <div className="flex flex-col">

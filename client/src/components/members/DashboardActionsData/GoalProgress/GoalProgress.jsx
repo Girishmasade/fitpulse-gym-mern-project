@@ -1,7 +1,7 @@
 import { Plus, Target } from "lucide-react";
 import React, { useState } from "react";
 import GoalProgressAddCard from "./GoalProgressAddCard";
-
+import { motion } from "framer-motion";
 const GoalProgress = () => {
   const Goal = [
     {
@@ -33,7 +33,11 @@ const GoalProgress = () => {
   const [open, setOpen] = useState(false);
 
   return (
-    <div className="flex flex-col p-4 px-6 gap-5 bg-base-200 rounded-md">
+    <motion.div
+      initial={{ x: -300 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+    className="flex flex-col p-4 px-6 gap-5 bg-base-200 rounded-md">
       <div className="flex flex-col">
         <h2 className="text-2xl font-semibold flex gap-2 items-center">
           <Target className="colour" />
@@ -84,7 +88,7 @@ const GoalProgress = () => {
         <Plus /> Set New Goal
       </button>
       <GoalProgressAddCard open={open} setOpen={setOpen}/>
-    </div>
+    </motion.div>
   );
 };
 
