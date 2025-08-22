@@ -1,21 +1,41 @@
-import React from 'react'
-import { Link } from 'react-router-dom'
-
+import React from "react";
+import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 const QuickActions = () => {
   return (
-    <div className='flex flex-col p-4 gap-4 w-full bg-base-200 rounded-md h-[250px]'>
+    <motion.div
+      initial={{ x: -300 }}
+      animate={{ x: 0 }}
+      transition={{ duration: 0.5, delay: 0 }}
+      className="flex flex-col p-4 gap-4 w-full bg-base-200 rounded-md h-[250px]"
+    >
       <div className="flex flex-col">
-        <h1 className='text-2xl font-semibold'>Quick Actions</h1>
+        <h1 className="text-2xl font-semibold">Quick Actions</h1>
         <p>Jump into your fitness routine</p>
       </div>
 
       <div className="flex flex-col gap-3 ">
-       <Link to="/user/bookings"> <button className="btn text-black rounded-lg commonColorBg w-full">Start Workout</button></Link>
-       <Link to="/user/progress"> <button className="btn border border-cyan-300 hover:bg-cyan-300 text-cyan-300 hover:text-black rounded-lg w-full">Log Workout</button></Link>
-       <Link to="/user/chat"> <button className="btn border border-zinc-300 hover:bg-zinc-300 text-zinc-300 hover:text-black rounded-lg w-full">Message Trainer</button></Link>
+        <Link to="/user/bookings">
+          {" "}
+          <button className="btn text-black rounded-lg commonColorBg w-full">
+            Start Workout
+          </button>
+        </Link>
+        <Link to="/user/progress">
+          {" "}
+          <button className="btn border border-cyan-300 hover:bg-cyan-300 text-cyan-300 hover:text-black rounded-lg w-full">
+            Log Workout
+          </button>
+        </Link>
+        <Link to="/user/chat">
+          {" "}
+          <button className="btn border border-zinc-300 hover:bg-zinc-300 text-zinc-300 hover:text-black rounded-lg w-full">
+            Message Trainer
+          </button>
+        </Link>
       </div>
-    </div>
-  )
-} 
+    </motion.div>
+  );
+};
 
-export default QuickActions
+export default QuickActions;

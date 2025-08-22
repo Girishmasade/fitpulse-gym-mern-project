@@ -3,6 +3,7 @@ import { ArrowLeft, BookOpen, Clock4, Target } from "lucide-react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import NutritionCardForm from "./NutritionCardForm";
+import NutritionCardFormData from "./NutritionCardFormData";
 
 const NutritionTodayCard = (meals) => {
   let todayDate = new Date();
@@ -13,7 +14,7 @@ const NutritionTodayCard = (meals) => {
   };
 
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-black bg-opacity-50 lg:pt-9 pt-6 lg:px-20 px-2 min-h-screen">
+    <div className="fixed inset-0 z-50 flex flex-col bg-black bg-opacity-50 lg:pt-9 pt-6 lg:px-20 px-2 min-h-screen overflow-y-auto">
       {/* Header */}
       <div className="flex justify-between">
         <div className="flex gap-2 items-center">
@@ -54,7 +55,7 @@ const NutritionTodayCard = (meals) => {
           initial={{ x: -300 }}
           animate={{ x: 0 }}
           transition={{ duration: 0.5 }}
-          className="border border-cyan-500 w-[400px] h-[500px] p-4 rounded-xl bg-gray-900 text-white flex flex-col gap-6"
+          className="border border-cyan-500 w-[40%] h-[500px] p-4 rounded-xl bg-gray-900 text-white flex flex-col gap-6"
         >
           <div className="flex flex-col">
             <h1 className="flex gap-2 text-lg font-bold">
@@ -65,8 +66,22 @@ const NutritionTodayCard = (meals) => {
           </div>
         </motion.div>
 
-        <div className=""></div>
+        <motion.div
+          initial={{ x: 300 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="w-full h-[280px] bg-gray-900 rounded-xl p-4 flex flex-col gap-6">
+          <NutritionCardForm/>
+        </motion.div>
       </div>
+
+      <motion.div
+          initial={{ y: 300 }}
+          animate={{ y: 0 }}
+          transition={{ duration: 0.5 }}
+           className="bg-gray-900 rounded-xl p-4 flex flex-col mt-9 mb-2">
+        
+      </motion.div>
     </div>
   );
 };

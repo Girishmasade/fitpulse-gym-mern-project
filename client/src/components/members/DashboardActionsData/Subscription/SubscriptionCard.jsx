@@ -1,6 +1,7 @@
 import React from "react";
 import { CreditCard, DollarSign } from "lucide-react";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const SubscriptionCard = () => {
   const subscriptions = [
@@ -16,7 +17,11 @@ const SubscriptionCard = () => {
   ];
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[400px]">
+    <motion.div
+      initial={{ x: 300 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5, delay: 0.3 }}
+          className="grid grid-cols-1 md:grid-cols-2 gap-6 h-[400px]">
       {subscriptions.map((subscription) => (
         <div
           key={subscription.id}
@@ -89,7 +94,7 @@ const SubscriptionCard = () => {
           </div>
         </div>
       ))}
-    </div>
+    </motion.div>
   );
 };
 

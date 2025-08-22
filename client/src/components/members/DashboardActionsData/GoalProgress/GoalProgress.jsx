@@ -34,7 +34,7 @@ const GoalProgress = () => {
 
   return (
     <motion.div
-      initial={{ x: -300 }}
+      initial={{ x: 300 }}
           animate={{ x: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
     className="flex flex-col p-4 px-6 gap-5 bg-base-200 rounded-md">
