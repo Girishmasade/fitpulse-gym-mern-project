@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "daisyui";
 
+/* .input-success {
+  @apply border-[#15ff00] rounded-md px-3 py-2 focus:border-[#15ff00] focus:ring-2 focus:ring-[#15ff00];
+} */
+
 @keyframes blinkGlow {
   0%,
   100% {
@@ -72,25 +76,52 @@
   color: transparent;
 }
 
-.commonColorBg{
-  background-color:#39ff14
+.commonColorBg {
+  background-color: #39ff14;
 }
 
-.commonColorBg:hover{
-  background-color:#1fd100
+.commonColorBg:hover {
+  background-color: #1fd100;
 }
 
-.commonColourBgHover:hover{
+.commonColourBgHover:hover {
   background-color: cyan;
   color: black;
   transition-duration: 0.5s;
 }
 
-.colour{
+.colour {
   color: #39ff14;
 }
 
-input:disabled{
-  cursor: not-allowed; 
-  caret-color: rgb(131, 0, 0); 
+.colorCyan {
+  color: #22d3ee;
+}
+
+input:disabled {
+  cursor: not-allowed;
+  caret-color: rgb(131, 0, 0);
+}
+
+.btn-success{
+    border: 0;
+    background-color: #39ff14;
+    color: black
+}
+
+.btn-success:hover{
+    background-color: #23d404;
+    color: black
+}
+
+.btn-error{
+    border: 1;
+    border-color: gray;
+    background-color: #1c1d1b;
+    color: rgb(255, 255, 255)
+}
+
+.btn-error:hover{
+    background-color: #39ff14;
+    color: black
 }

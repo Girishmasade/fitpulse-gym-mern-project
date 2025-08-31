@@ -2,6 +2,7 @@ import { Plus, Target } from "lucide-react";
 import React, { useState } from "react";
 import GoalProgressAddCard from "./GoalProgressAddCard";
 import { motion } from "framer-motion";
+import { Link, useNavigate } from "react-router-dom";
 const GoalProgress = () => {
   const Goal = [
     {
@@ -30,14 +31,15 @@ const GoalProgress = () => {
     },
   ];
 
-  const [open, setOpen] = useState(false);
+  const navigate = useNavigate()
 
   return (
     <motion.div
       initial={{ x: 300 }}
-          animate={{ x: 0 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-    className="flex flex-col p-4 px-6 gap-5 bg-base-200 rounded-md">
+      animate={{ x: 0 }}
+      transition={{ duration: 0.5, delay: 0.2 }}
+      className="flex flex-col p-4 px-6 gap-5 bg-base-200 rounded-md"
+    >
       <div className="flex flex-col">
         <h2 className="text-2xl font-semibold flex gap-2 items-center">
           <Target className="colour" />
@@ -81,13 +83,13 @@ const GoalProgress = () => {
           );
         })}
       </div>
-      <button
-        onClick={() => setOpen(true)}
-        className="flex gap-2 p-2 items-center justify-center border border-[#39ff14] colour hover:commonColorBg rounded-md cursor-pointer"
-      >
+        <button 
+        onClick={() => navigate("/member/addgoals")}
+        className="flex gap-2 p-2 w-full items-center justify-center border border-[#39ff14] colour hover:commonColorBg rounded-md cursor-pointer">
         <Plus /> Set New Goal
       </button>
-      <GoalProgressAddCard open={open} setOpen={setOpen}/>
+      
+    
     </motion.div>
   );
 };
