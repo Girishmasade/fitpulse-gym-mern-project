@@ -4,6 +4,7 @@ import AddGoal from "./AddGoal";
 import { useState } from "react";
 import { Calendar, CircleCheckBig, Target, TrendingUp } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const GoalProgressAddCard = () => {
   const [open, setOpen] = useState(false);
@@ -49,16 +50,16 @@ const GoalProgressAddCard = () => {
         ) / goals.length
       ).toFixed(2)
     : goals.length;
-  const calDue = goals.filter(
+  const dueSoon = goals.filter(
     (g) => new Date(g.dueDate) < new Date("2024-04-01")
   ).length;
 
-  const status = [
-    { icon: <Target />, label: "Active Goals", value: activeGoals },
-    { icon: <CircleCheckBig />, label: "Completed", value: completedGoal },
-    { icon: <TrendingUp />, label: "Avg Progress", value: `${avgProgress} %` },
-    { icon: <Calendar />, label: "Due Soon", value: calDue },
-  ];
+  // const status = [
+  //   { icon: <Target />, label: "Active Goals", value: activeGoals },
+  //   { icon: <CircleCheckBig />, label: "Completed", value: completedGoal },
+  //   { icon: <TrendingUp />, label: "Avg Progress", value: `${avgProgress} %` },
+  //   { icon: <Calendar />, label: "Due Soon", value: calDue },
+  // ];
 
   // const avgProgress =
   //   goals.length === 0
@@ -86,7 +87,12 @@ const GoalProgressAddCard = () => {
 
   return (
     <div className="fixed inset-0 z-50 flex flex-col bg-black bg-opacity-50 lg:pt-9 pt-6 lg:px-20 px-2 min-h-screen overflow-y-auto">
-      <div className="flex justify-between">
+      <motion.div
+        initial={{ x: -300 }}
+        animate={{ x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="flex justify-between"
+      >
         <div className="flex items-center lg:gap-6 gap-4">
           <button
             onClick={backButtonHandler}
@@ -112,27 +118,57 @@ const GoalProgressAddCard = () => {
         >
           <Plus /> New Goal
         </button>
+      </motion.div>
+
+      <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mt-6">
+        <motion.div
+          initial={{ x: -300 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center justify-center gap-3 bg-gray-800 rounded-lg p-4"
+        >
+          <Target className="colour" />
+          <p className="text-2xl font-bold">{goals.length}</p>
+          <h3 className="text-md text-gray-400">Active Goals</h3>
+        </motion.div>
+        <motion.div
+          initial={{ x: -250 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center justify-center gap-3 bg-gray-800 rounded-lg p-4"
+        >
+          <CircleCheckBig className="colorCyan" />
+          <p className="text-2xl font-bold">{completedGoal}</p>
+          <h3 className="text-md text-gray-400">Completed</h3>
+        </motion.div>
+        <motion.div
+          initial={{ x: -200 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center justify-center gap-3 bg-gray-800 rounded-lg p-4"
+        >
+          <TrendingUp className="colour" />
+          <p className="text-2xl font-bold">{avgProgress}%</p>
+          <h3 className="text-md text-gray-400">Avg Progress</h3>
+        </motion.div>
+        <motion.div
+          initial={{ x: -150 }}
+          animate={{ x: 0 }}
+          transition={{ duration: 0.5 }}
+          className="flex flex-col items-center justify-center gap-3 bg-gray-800 rounded-lg p-4"
+        >
+          <Calendar className="colorCyan" />
+          <p className="text-2xl font-bold">{dueSoon}</p>
+          <h3 className="text-md text-gray-400">Due Soon</h3>
+        </motion.div>
       </div>
 
-      <div className="lg:mt-8 mt-3">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 my-6">
-          {status.map((item, index) => (
-            <div
-              key={index}
-              className="bg-gray-900 text-white rounded-lg p-6 text-center shadow-md items-center flex flex-col gap-2"
-            >
-              <span className={`${index % 2 !== 0 ? "colorCyan" : "colour"}`}>
-                {item.icon}
-              </span>
-
-              <p className="text-2xl font-bold">{item.value}</p>
-              <p className="text-md text-gray-400">{item.label}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      <div className="bg-gray-800 p-4 flex flex-col rounded-lg">
+      <motion.div
+        initial={{ x: -300 }}
+        animate={{ x: 0 }}
+        transition={{ duration: 0.5 }}
+        className="bg-gray-800 p-4 flex flex-col rounded-lg mt-7"
+      >
         <div className="flex flex-col gap-1">
           <h1 className="text-xl font-bold">Your Goals</h1>
           <span className="text-sm text-gray-400">
@@ -150,7 +186,10 @@ const GoalProgressAddCard = () => {
             console.log(progress);
 
             return (
-              <div
+              <motion.div
+                initial={{ x: -300 }}
+                animate={{ x: 0 }}
+                transition={{ duration: 0.5 }}
                 key={item.id}
                 className="flex flex-col mb-4 bg-gray-700 p-4 rounded-lg mt-2"
               >
@@ -225,11 +264,11 @@ const GoalProgressAddCard = () => {
                     {item.unit}
                   </p>
                 </div>
-              </div>
+              </motion.div>
             );
           })
         )}
-      </div>
+      </motion.div>
       {open && (
         <div className="">
           <AddGoal open={open} setOpen={setOpen} goals={goals} />
