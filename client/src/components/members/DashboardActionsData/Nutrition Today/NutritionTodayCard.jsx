@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom";
 import NutritionCardForm from "./NutritionCardForm";
 import NutritionCardFormData from "./NutritionCardFormData";
 
-const NutritionTodayCard = (meals) => {
+const NutritionTodayCard = () => {
   let todayDate = new Date();
   const navigate = useNavigate();
 
