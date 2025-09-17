@@ -53,7 +53,8 @@ const subscriptionStoreSlice = createSlice({
         subscription: SubscriptionPlans,
         period: 'monthly' || 'yearly',
         history: [],
-        paymentMethod: []
+        paymentMethod: null,
+        currentPlan: null
     },
 
     reducers: {
@@ -68,9 +69,13 @@ const subscriptionStoreSlice = createSlice({
         },
         setPaymentMethod: (state, actions) => {
             state.paymentMethod = actions.payload
-        }
+        },
+        setCurrentPlan: (state, actions) => {
+            state.currentPlan = actions.payload
+            state.history.push(actions.payload);
+         },
     }
 })
 
-export const { setSubscription, setPeriod, setHistory, setPaymentMethod } = subscriptionStoreSlice.actions;
+export const { setSubscription, setPeriod, setHistory, setPaymentMethod, setCurrentPlan } = subscriptionStoreSlice.actions;
 export default subscriptionStoreSlice.reducer;

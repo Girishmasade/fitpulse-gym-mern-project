@@ -80,6 +80,15 @@
   background-color: #39ff14;
 }
 
+.badge-success{
+    background-color: #39ff14;
+    color: black;
+    font-weight: 500;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    font-size: 0.875rem;
+}
+
 .commonColorBg:hover {
   background-color: #1fd100;
 }

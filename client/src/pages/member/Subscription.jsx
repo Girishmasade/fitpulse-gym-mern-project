@@ -1,6 +1,8 @@
 import { ArrowLeft } from 'lucide-react';
 import React from 'react';
 import CurrentSubscriptionCard from '../../components/members/DashboardActionsData/Subscription/CurrentSubscriptionCard';
+import SubscriptionPlans from '../../components/members/DashboardActionsData/Subscription/SubscriptionPlans';
+import AddPaymentMethod from '../../components/members/DashboardActionsData/Subscription/AddPaymentMethod';
 
 const Subscription = () => {
   return (
@@ -15,6 +17,11 @@ const Subscription = () => {
 
       <div className="w-full bg-gray-800 rounded-lg border border-gray-700 mt-6">
         <CurrentSubscriptionCard/>
+      </div>
+
+      <div className="flex mt-8 gap-6">
+        <SubscriptionPlans/>
+        <AddPaymentMethod/>
       </div>
     </div>
   );
