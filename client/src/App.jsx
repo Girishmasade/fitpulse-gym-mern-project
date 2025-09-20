@@ -25,6 +25,8 @@ import Subscription from "./pages/member/Subscription";
 import SubscrptionHistory from "./components/members/DashboardActionsData/Subscription/SubscrptionHistory";
 import NutritionTodayCard from "./components/members/DashboardActionsData/Nutrition Today/NutritionTodayCard";
 import GoalProgressAddCard from "./components/members/DashboardActionsData/GoalProgress/GoalProgressAddCard";
+import MemberProfile from "./pages/member/Profile";
+
 
 const App = () => {
   return (
@@ -55,6 +57,8 @@ const App = () => {
             <Route path="/member/progress" element={<Progress />} />
             <Route path="/member/chat" element={<Chat />} />
             <Route path="/member/subscription" element={<Subscription />} />
+            <Route path="/member/profile" element={<MemberProfile />} />
+
             <Route
               path="/member/subscription/history"
               element={<SubscrptionHistory />}

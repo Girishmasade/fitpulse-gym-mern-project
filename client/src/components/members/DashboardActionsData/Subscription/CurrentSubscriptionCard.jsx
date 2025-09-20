@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { CheckCircle } from "lucide-react"; // icon
 
 const CurrentSubscriptionCard = () => {
-  const { period, currentPlan, loading } = useSelector(
+  const { period, currentPlan, loading} = useSelector(
     (state) => state.subscription
   );
 

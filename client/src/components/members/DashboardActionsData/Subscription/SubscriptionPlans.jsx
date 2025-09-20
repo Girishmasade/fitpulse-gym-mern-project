@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { setCurrentPlan, setPeriod } from "../../../../redux/api/subscriptionStoreSlice";
 import { Check } from "lucide-react";
 
-const currencySymbol = "$"; // change to "₹" if you want rupee
+const currencySymbol = "₹"; 
 
 const SubscriptionPlans = () => {
   const { currentPlan, period, subscription } = useSelector(
@@ -27,7 +27,7 @@ const SubscriptionPlans = () => {
   };
 
   return (
-    <div className="w-full bg-gray-800 rounded-lg border border-gray-700 p-6">
+    <div className="w-[80%] overflow-y-auto bg-gray-800 rounded-lg border border-gray-700 p-6">
       <div className="flex flex-col">
         <h2 className="text-2xl font-semibold text-white">Choose Your Plan</h2>
         <p className="text-gray-400 text-sm">

@@ -6,7 +6,7 @@ import AddPaymentMethod from '../../components/members/DashboardActionsData/Subs
 
 const Subscription = () => {
   return (
-    <div className="fixed inset-0 z-50 flex flex-col bg-black bg-opacity-50 lg:pt-9 pt-6 lg:px-20 px-2 min-h-screen overflow-y-auto">
+    <div className="fixed inset-0 z-50 flex flex-col bg-black bg-opacity-50 lg:pt-9 pt-6 lg:px-20 px-2 overflow-y-auto">
       <div className="flex gap-6">
         <button className="cursor-pointer text-gray-500 hover:bg-[#39ff14] p-2 rounded-md hover:text-gray-800"><ArrowLeft /></button>
       <div className="flex flex-col">

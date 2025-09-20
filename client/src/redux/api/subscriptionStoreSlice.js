@@ -69,6 +69,7 @@ const subscriptionStoreSlice = createSlice({
         },
         setPaymentMethod: (state, actions) => {
             state.paymentMethod = actions.payload
+            state.history.push(actions.payload);
         },
         setCurrentPlan: (state, actions) => {
             state.currentPlan = actions.payload
